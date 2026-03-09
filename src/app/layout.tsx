@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Book the Band — Fan-Powered Live Music",
+  title: "Band On Demand — Fan-Powered Live Music",
   description:
     "Pledge your spot. Hit the threshold. The show gets booked. The fan-powered platform bringing indie artists to your city.",
 };

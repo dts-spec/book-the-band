@@ -1,4 +1,4 @@
-export const SITE_NAME = "Book the Band";
+export const SITE_NAME = "Band On Demand";
 export const SITE_TAGLINE = "Where demand meets the stage.";
 export const PLATFORM_FEE_ARTIST = 0.08;
 export const PLATFORM_FEE_FAN = 0.05;

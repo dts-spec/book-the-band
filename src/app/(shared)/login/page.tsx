@@ -17,7 +17,7 @@ export default function LoginPage() {
             Welcome Back
           </h1>
           <p className="text-sm text-text-dark-secondary text-center mt-1">
-            Sign in to your Book the Band account
+            Sign in to your Band On Demand account
           </p>
 
           {/* Role tabs */}
