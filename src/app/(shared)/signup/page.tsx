@@ -15,7 +15,7 @@ export default function SignupPage() {
       <div className="w-full max-w-md px-4">
         <div className="bg-surface-light border border-border-light rounded-2xl shadow-[var(--shadow-card)] p-8">
           <h1 className="font-display text-2xl font-bold text-text-dark uppercase tracking-wide text-center">
-            Join Band On Demand
+            Join Bands On Demand
           </h1>
           <p className="text-sm text-text-dark-secondary text-center mt-1">
             {role === "brand"
