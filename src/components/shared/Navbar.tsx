@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { NAV_LINKS_FAN, NAV_LINKS_ARTIST, SITE_NAME } from "@/lib/constants";
+import { NAV_LINKS_FAN, NAV_LINKS_ARTIST, NAV_LINKS_BRAND, SITE_NAME } from "@/lib/constants";
+import type { UserRole } from "@/types";
 import { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 
@@ -11,13 +12,15 @@ interface NavbarProps {
   variant?: "dark" | "light" | "transparent";
 }
 
+const ROLES: UserRole[] = ["fan", "artist", "brand"];
+
 export default function Navbar({ variant = "dark" }: NavbarProps) {
   const pathname = usePathname();
-  const [role, setRole] = useState<"fan" | "artist">("fan");
+  const [role, setRole] = useState<UserRole>("fan");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const links = role === "fan" ? NAV_LINKS_FAN : NAV_LINKS_ARTIST;
+  const links = role === "fan" ? NAV_LINKS_FAN : role === "artist" ? NAV_LINKS_ARTIST : NAV_LINKS_BRAND;
 
   /* When transparent, solidify navbar after scrolling 80px */
   useEffect(() => {
@@ -84,32 +87,22 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                 isDark ? "bg-surface-elevated" : "bg-surface-light-elevated",
               )}
             >
-              <button
-                onClick={() => setRole("fan")}
-                className={cn(
-                  "px-3 py-1 rounded-full transition-all cursor-pointer",
-                  role === "fan"
-                    ? "bg-btb-yellow text-black font-semibold"
-                    : isDark
-                      ? "text-text-muted hover:text-white"
-                      : "text-text-dark-muted hover:text-text-dark",
-                )}
-              >
-                Fan
-              </button>
-              <button
-                onClick={() => setRole("artist")}
-                className={cn(
-                  "px-3 py-1 rounded-full transition-all cursor-pointer",
-                  role === "artist"
-                    ? "bg-btb-yellow text-black font-semibold"
-                    : isDark
-                      ? "text-text-muted hover:text-white"
-                      : "text-text-dark-muted hover:text-text-dark",
-                )}
-              >
-                Artist
-              </button>
+              {ROLES.map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setRole(r)}
+                  className={cn(
+                    "px-2.5 py-1 rounded-full transition-all cursor-pointer capitalize",
+                    role === r
+                      ? "bg-btb-yellow text-black font-semibold"
+                      : isDark
+                        ? "text-text-muted hover:text-white"
+                        : "text-text-dark-muted hover:text-text-dark",
+                  )}
+                >
+                  {r}
+                </button>
+              ))}
             </div>
 
             <Link href="/login">

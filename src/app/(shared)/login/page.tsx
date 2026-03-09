@@ -4,9 +4,10 @@ import { useState } from "react";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import type { UserRole } from "@/types";
 
 export default function LoginPage() {
-  const [role, setRole] = useState<"fan" | "artist">("fan");
+  const [role, setRole] = useState<UserRole>("fan");
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12">
@@ -21,26 +22,19 @@ export default function LoginPage() {
 
           {/* Role tabs */}
           <div className="flex mt-6 p-1 bg-surface-light-elevated rounded-lg">
-            <button
-              onClick={() => setRole("fan")}
-              className={`flex-1 py-2 text-sm font-medium rounded-md transition-all cursor-pointer ${
-                role === "fan"
-                  ? "bg-surface-light text-text-dark shadow-sm"
-                  : "text-text-dark-muted hover:text-text-dark"
-              }`}
-            >
-              Fan
-            </button>
-            <button
-              onClick={() => setRole("artist")}
-              className={`flex-1 py-2 text-sm font-medium rounded-md transition-all cursor-pointer ${
-                role === "artist"
-                  ? "bg-surface-light text-text-dark shadow-sm"
-                  : "text-text-dark-muted hover:text-text-dark"
-              }`}
-            >
-              Artist
-            </button>
+            {(["fan", "artist", "brand"] as const).map((r) => (
+              <button
+                key={r}
+                onClick={() => setRole(r)}
+                className={`flex-1 py-2 text-sm font-medium rounded-md transition-all cursor-pointer capitalize ${
+                  role === r
+                    ? "bg-surface-light text-text-dark shadow-sm"
+                    : "text-text-dark-muted hover:text-text-dark"
+                }`}
+              >
+                {r}
+              </button>
+            ))}
           </div>
 
           <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>

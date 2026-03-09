@@ -17,6 +17,48 @@ export const NAV_LINKS_ARTIST = [
   { label: "How It Works", href: "/how-it-works" },
 ] as const;
 
+export const NAV_LINKS_BRAND = [
+  { label: "Browse Artists", href: "/brand-discover" },
+  { label: "Dashboard", href: "/brand-dashboard" },
+  { label: "How It Works", href: "/how-it-works" },
+] as const;
+
+export const SPONSORSHIP_TIERS = {
+  presenting: {
+    label: "Presenting Sponsor",
+    minAmount: 5000,
+    color: "#FF5722",
+    perks: [
+      "Logo on all campaign materials",
+      "On-stage brand mention",
+      "VIP section branding",
+      "Social media features",
+      "Post-show recap feature",
+    ],
+  },
+  supporting: {
+    label: "Supporting Sponsor",
+    minAmount: 2000,
+    color: "#FF9100",
+    perks: [
+      "Logo on campaign page",
+      "Brand mention in emails",
+      "Merch table presence",
+      "Social media mention",
+    ],
+  },
+  community: {
+    label: "Community Sponsor",
+    minAmount: 500,
+    color: "#00C853",
+    perks: [
+      "Logo on campaign page",
+      "Thank-you mention at show",
+      "Listed in sponsor section",
+    ],
+  },
+} as const;
+
 export const AMBASSADOR_TIERS = {
   fan: { label: "Fan", minReferrals: 0, color: "#A1A1A1" },
   superfan: { label: "Superfan", minReferrals: 3, color: "#FF5722" },

@@ -2,6 +2,7 @@ import type { Campaign, RewardTier, ActivityEvent } from "@/types";
 import { artists, getArtistById } from "./artists";
 import { getCity } from "./cities";
 import { getVenue } from "./venues";
+import { getBrandById } from "./brands";
 
 function simpleHash(str: string): number {
   let hash = 0;
@@ -103,9 +104,10 @@ const campaignDefs: Array<{
   gradientColors: [string, string];
   venueId?: string;
   showDate?: string;
+  sponsorBrandId?: string;
 }> = [
   // Rooney — power pop comeback tour
-  { artistId: "rooney", cityId: "denver", threshold: 500, current: 438, status: "active", daysRemaining: 12, basePrice: 30, gradientColors: ["#1a1033", "#0d1b2a"] },
+  { artistId: "rooney", cityId: "denver", threshold: 500, current: 438, status: "active", daysRemaining: 12, basePrice: 30, gradientColors: ["#1a1033", "#0d1b2a"], sponsorBrandId: "redbull-music" },
   { artistId: "rooney", cityId: "austin", threshold: 400, current: 412, status: "threshold_met", daysRemaining: 8, basePrice: 35, gradientColors: ["#1a1033", "#2d1810"], venueId: "mohawk-austin" },
   // The Airborne Toxic Event — always touring
   { artistId: "the-airborne-toxic-event", cityId: "chicago", threshold: 800, current: 623, status: "active", daysRemaining: 18, basePrice: 40, gradientColors: ["#0d0d2b", "#1a0d2b"] },
@@ -129,7 +131,7 @@ const campaignDefs: Array<{
   { artistId: "houndmouth", cityId: "chicago", threshold: 500, current: 145, status: "active", daysRemaining: 35, basePrice: 25, gradientColors: ["#1a1a0d", "#0d0d1a"] },
   // Dayglow — hot demand everywhere
   { artistId: "dayglow", cityId: "denver", threshold: 800, current: 795, status: "active", daysRemaining: 2, basePrice: 35, gradientColors: ["#1a0d2b", "#2b0d1a"] },
-  { artistId: "dayglow", cityId: "austin", threshold: 750, current: 772, status: "threshold_met", daysRemaining: 7, basePrice: 35, gradientColors: ["#1a0d2b", "#1a100d"], venueId: "mohawk-austin" },
+  { artistId: "dayglow", cityId: "austin", threshold: 750, current: 772, status: "threshold_met", daysRemaining: 7, basePrice: 35, gradientColors: ["#1a0d2b", "#1a100d"], venueId: "mohawk-austin", sponsorBrandId: "converse-all-stars" },
   // boy pablo — international indie darling
   { artistId: "boy-pablo", cityId: "portland", threshold: 600, current: 334, status: "active", daysRemaining: 18, basePrice: 30, gradientColors: ["#0d0d1a", "#1a0d1a"] },
   { artistId: "boy-pablo", cityId: "nashville", threshold: 500, current: 52, status: "active", daysRemaining: 40, basePrice: 30, gradientColors: ["#0d0d1a", "#0d1a0d"] },
@@ -166,6 +168,8 @@ export const campaigns: Campaign[] = campaignDefs.map((def, i) => {
     recentActivity: makeActivity(slug, 12),
     daysRemaining: def.daysRemaining,
     createdAt: new Date(Date.now() - 21 * 86_400_000).toISOString(),
+    sponsorBrandId: def.sponsorBrandId,
+    sponsorBrand: def.sponsorBrandId ? getBrandById(def.sponsorBrandId) : undefined,
   };
 });
 

@@ -86,6 +86,37 @@ export default async function CampaignDetailPage({
               </div>
             </section>
 
+            {/* Sponsored By */}
+            {campaign.sponsorBrand && (
+              <section className="bg-surface-elevated border border-border-dark rounded-xl p-6">
+                <h2 className="font-display text-sm font-bold text-text-muted uppercase tracking-wide mb-4">
+                  Sponsored By
+                </h2>
+                <div className="flex items-center gap-4">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={campaign.sponsorBrand.logoUrl}
+                    alt={campaign.sponsorBrand.name}
+                    className="w-14 h-14 rounded-xl object-cover"
+                  />
+                  <div>
+                    <p className="text-white font-semibold">{campaign.sponsorBrand.name}</p>
+                    <p className="text-sm text-text-muted capitalize">
+                      {campaign.sponsorBrand.category} &middot;{" "}
+                      <a
+                        href={campaign.sponsorBrand.website}
+                        className="text-btb-yellow hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit Website
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </section>
+            )}
+
             {/* Activity Feed */}
             <section>
               <h2 className="font-display text-xl font-bold text-white uppercase tracking-wide mb-4">

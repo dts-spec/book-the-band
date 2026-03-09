@@ -6,6 +6,7 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import CampaignCard from "@/components/campaign/CampaignCard";
 import Button from "@/components/ui/Button";
+import Badge from "@/components/ui/Badge";
 import { getTrendingCampaigns, campaigns, getCampaignsByCity } from "@/data/campaigns";
 import { cities } from "@/data/cities";
 import { formatNumber } from "@/lib/formatters";
@@ -406,6 +407,73 @@ export default function LandingPage() {
                 Learn More
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          BRAND CTA — corporate partnership
+         ═══════════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-surface-dark">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-surface-dark via-surface-dark/90 to-surface-dark" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge variant="yellow" className="mb-4">For Brands</Badge>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-wide">
+                Are You a Brand?
+              </h2>
+              <p className="mt-5 text-lg text-text-secondary leading-relaxed">
+                Connect with passionate music fans through sponsorships and
+                private events. From presenting-level campaign sponsorships to
+                booking artists for exclusive brand experiences — reach
+                audiences that are already engaged.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row items-start gap-4">
+                <Link href="/signup">
+                  <Button variant="primary" size="lg">
+                    Become a Sponsor
+                  </Button>
+                </Link>
+                <Link href="/brand-discover">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white/30 text-white hover:bg-white/10"
+                  >
+                    Browse Opportunities
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { icon: "🎤", label: "Sponsor Campaigns", desc: "Put your brand behind fan-powered shows" },
+                { icon: "🏢", label: "Private Events", desc: "Book artists for branded experiences" },
+                { icon: "📊", label: "Audience Insights", desc: "Reach engaged, passionate music fans" },
+                { icon: "🤝", label: "Authentic Connection", desc: "Build brand affinity through live music" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="bg-surface-elevated/50 backdrop-blur-sm border border-border-dark rounded-xl p-5 hover:border-btb-yellow/30 transition-colors"
+                >
+                  <span className="text-2xl">{item.icon}</span>
+                  <h4 className="font-display text-sm font-bold text-white uppercase tracking-wide mt-3">
+                    {item.label}
+                  </h4>
+                  <p className="text-xs text-text-muted mt-1">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

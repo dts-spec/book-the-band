@@ -13,7 +13,7 @@ export default function Footer({ variant = "dark" }: FooterProps) {
       className={isDark ? "bg-surface-dark border-t border-border-dark" : "bg-surface-cream border-t border-border-light"}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <span className="font-display text-lg font-bold uppercase tracking-wide text-btb-yellow">
@@ -59,6 +59,29 @@ export default function Footer({ variant = "dark" }: FooterProps) {
                 { label: "Get Started", href: "/signup" },
               ].map((link) => (
                 <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`text-sm ${isDark ? "text-text-muted hover:text-white" : "text-text-dark-muted hover:text-text-dark"} transition-colors`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* For Brands */}
+          <div>
+            <h4 className={`text-sm font-semibold mb-3 ${isDark ? "text-white" : "text-text-dark"}`}>
+              For Brands
+            </h4>
+            <ul className="space-y-2">
+              {[
+                { label: "Browse Artists", href: "/brand-discover" },
+                { label: "Brand Dashboard", href: "/brand-dashboard" },
+                { label: "Become a Sponsor", href: "/signup" },
+              ].map((link) => (
+                <li key={link.href + link.label}>
                   <Link
                     href={link.href}
                     className={`text-sm ${isDark ? "text-text-muted hover:text-white" : "text-text-dark-muted hover:text-text-dark"} transition-colors`}

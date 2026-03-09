@@ -120,6 +120,8 @@ export interface Campaign {
   recentActivity: ActivityEvent[];
   daysRemaining: number;
   createdAt: string;
+  sponsorBrandId?: string;
+  sponsorBrand?: Brand;
 }
 
 // ── Ambassador Tier ──
@@ -134,6 +136,72 @@ export interface Pledge {
   amount: number;
   status: 'active' | 'confirmed' | 'refunded' | 'completed';
   pledgedAt: string;
+}
+
+// ── User Role ──
+export type UserRole = 'fan' | 'artist' | 'brand';
+
+// ── Brand / Sponsor ──
+export type BrandCategory =
+  | 'beverage'
+  | 'apparel'
+  | 'tech'
+  | 'automotive'
+  | 'lifestyle'
+  | 'food'
+  | 'media'
+  | 'local-business';
+
+export interface Brand {
+  id: string;
+  slug: string;
+  name: string;
+  category: BrandCategory;
+  bio: string;
+  logoUrl: string;
+  heroImageUrl: string;
+  website: string;
+  contactEmail: string;
+  totalSponsorships: number;
+  totalEventsBooked: number;
+  totalSpent: number;
+  joinedAt: string;
+}
+
+export type SponsorshipTier = 'presenting' | 'supporting' | 'community';
+export type SponsorshipStatus = 'pending' | 'active' | 'completed' | 'cancelled';
+
+export interface Sponsorship {
+  id: string;
+  brandId: string;
+  brand: Brand;
+  campaignId: string;
+  campaign: Campaign;
+  tier: SponsorshipTier;
+  amount: number;
+  status: SponsorshipStatus;
+  perks: string[];
+  createdAt: string;
+}
+
+export type BookingStatus = 'inquiry' | 'confirmed' | 'completed' | 'cancelled';
+
+export interface BrandBooking {
+  id: string;
+  brandId: string;
+  brand: Brand;
+  artistId: string;
+  artist: Artist;
+  eventName: string;
+  eventDate: string;
+  venueId?: string;
+  venue?: Venue;
+  city: City;
+  budget: number;
+  attendees: number;
+  status: BookingStatus;
+  notes: string;
+  createdAt: string;
 }
 
 // ── Fan ──
